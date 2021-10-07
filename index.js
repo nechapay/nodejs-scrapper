@@ -56,7 +56,6 @@ async function listContestants(url) {
   try {
     const data = await p.getDataFromPage(url)
     res.push(data)
-    console.log(chalk.green(`data ${data}`))
   } catch (err) {
     console.log(chalk.red('An error has occurred \n'))
     console.log(err)
