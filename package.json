@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run clean && babel-node index.js",
+    "linux": "npm run clean && babel-node index.js",
     "clean": "rm -rf data && mkdir data ",
-    "win": "babel-node index.js",
+    "win": "npm run clear && babel-node index.js",
     "clear": "rmdir /s/q data && mkdir data"
   },
   "keywords": [],
