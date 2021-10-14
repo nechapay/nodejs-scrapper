@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && babel-node index.js",
-    "clean": "rm -rf data && mkdir data "
+    "clean": "rm -rf data && mkdir data ",
+    "win": "babel-node index.js",
+    "clear": "rmdir /s/q data && mkdir data"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +17,10 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "async": "^3.1.0",
-    "chalk": "^2.4.2",
+    "async": "^3.2.1",
+    "chalk": "^4.1.2",
     "cherio": "^1.0.0-rc.2",
-    "puppeteer": "^1.18.1",
-    "transliteration": "^2.1.4"
+    "exceljs": "^4.3.0",
+    "puppeteer": "10.4.0"
   }
 }

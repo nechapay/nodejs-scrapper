@@ -2,7 +2,8 @@ import chalk from 'chalk'
 
 import { PuppeteerHandler } from './helpers/puppeteer'
 import queue from 'async/queue'
-import saveData from "./handlers/saver"
+// import saveData from "./handlers/saver"
+import saveToExcel from "./handlers/excel"
 
 
 const SITE = 'https://shkolagoda.menobr.ru/competition/stage7_teamlead/regions/'
@@ -29,15 +30,20 @@ taskQueue.drain(async function() {
   for (let i = 0; i < res.length; i++) {
     for (let j = 0; j < res[i].length; j++) {
       data.push(res[i][j])
-      console.log(`${res[i][j].region}&&${res[i][j].title}&&${res[i][j].score}`)
+      console.log(`${res[i][j].region}&${res[i][j].title}&${res[i][j].score}`)
     }
   }
-  await saveData(data)
+
+  // await saveData(data)
+  data.sort(function (a, b) {
+    return b.score - a.score
+  })
+  await saveToExcel(data, __dirname)
   p.closeBrowser()
   process.exit()
-});
+})
 
-(function main() {
+;(function main() {
   for (let i = 0; i < pages; i++) {
     taskQueue.push(
       () => listContestants(`${SITE}${i + 1}`),
@@ -46,11 +52,11 @@ taskQueue.drain(async function() {
           console.log(err);
           throw new Error(`Error getting data from page# ${SITE}${i + 1}`)
         }
-        console.log(chalk.green.bold(`Completed getting data from page\n`))
+        console.log(chalk.green.bold(`Completed getting data from page`), chalk.blue(`${SITE}${i + 1}\n`))
       }
     )
   }
-})();
+})()
 
 async function listContestants(url) {
   try {
