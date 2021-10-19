@@ -4,7 +4,7 @@ import chalk from "chalk"
 
 export const saveToExcel = async (data, dir) => {
   const wb = new xlsx.Workbook()
-  const fileName = path.join(dir, 'data', `голосование_${getName()}.xlsx`)
+  const fileName = path.join(dir, 'data', `голосование-${getName()}.xlsx`)
   const ws = wb.addWorksheet('poll')
   ws.state = 'visible'
   let row = 1
@@ -28,8 +28,8 @@ async function saveWorkbook (wb, fileName) {
 }
 
 function getName() {
-  const date = new Date()  
-  return `${formatDate(date.getDate())}${formatDate(date.getMonth() + 1)}${formatDate(date.getFullYear())}-${formatDate(date.getHours())}:${formatDate(date.getMinutes())}:${formatDate(date.getSeconds())}`
+  const date = new Date()
+  return `${formatDate(date.getDate())}${formatDate(date.getMonth() + 1)}${formatDate(date.getFullYear())}-${formatDate(date.getHours())}${formatDate(date.getMinutes())}${formatDate(date.getSeconds())}`
 }
 
 function formatDate(item) {
