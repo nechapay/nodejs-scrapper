@@ -4,8 +4,7 @@ import chalk from "chalk"
 
 export const saveToExcel = async (data, dir) => {
   const wb = new xlsx.Workbook()
-  let date = new Date()
-  const fileName = path.join(dir, 'data', `голосование_${date.getDate()}${date.getMonth() + 1}${date.getFullYear()}_${getRandomName()}.xlsx`)
+  const fileName = path.join(dir, 'data', `голосование_${getName()}.xlsx`)
   const ws = wb.addWorksheet('poll')
   ws.state = 'visible'
   let row = 1
@@ -28,17 +27,13 @@ async function saveWorkbook (wb, fileName) {
   console.log(chalk.blue('File was saved successfully: ') + chalk.blue.bold(fileName) + '\n')
 }
 
-function getRandomName() {
-  const str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  let out =''
-  for (let i = 0; i < 6; i++) {
-    out += str.split('')[getRandomInt(0, str.length - 1)]
-  }
-  return out
+function getName() {
+  const date = new Date()  
+  return `${formatDate(date.getDate())}${formatDate(date.getMonth() + 1)}${formatDate(date.getFullYear())}-${formatDate(date.getHours())}:${formatDate(date.getMinutes())}:${formatDate(date.getSeconds())}`
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+function formatDate(item) {
+  return parseInt(item) < 10 ? '0' + item : item
 }
 
 export default saveToExcel
