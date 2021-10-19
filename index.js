@@ -17,7 +17,7 @@ export const taskQueue = queue(async (task, done) => {
   try {
     await task()
     console.log(chalk.bold.magenta('Task completed, tasks left: ' + taskQueue.length() + '\n'))
-    done();
+    done()
   } catch (err) {
     throw err
   }

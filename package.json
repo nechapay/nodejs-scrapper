@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "linux": "npm run clean && babel-node index.js",
-    "clean": "rm -rf data && mkdir data ",
-    "win": "npm run clear && babel-node index.js",
-    "clear": "rmdir /s/q data && mkdir data"
+    "start": "babel-node --trace-warnings index.js"
   },
   "keywords": [],
   "author": "",
